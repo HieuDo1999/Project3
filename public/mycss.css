@@ -1,0 +1,26 @@
+.masp{
+    width: 10%;
+}
+.table table-bordered{
+    border-collapse:collapse;
+            width:100%;
+            
+}
+th, td{
+    text-align:left;
+    padding:10px;
+}
+tr:hover{
+    background-color:#ddd;
+    cursor:pointer;
+}
+.imgsp{
+    width: 150px;
+    height: 100px;
+}
+.imgSP{
+    width: 150px;
+}
+.tensp{
+    width: 20%;
+}
