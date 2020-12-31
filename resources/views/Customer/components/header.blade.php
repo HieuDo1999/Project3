@@ -30,10 +30,20 @@
             <li class="nav-item text-nowrap">
                 <a class="nav-link" href="pages/cart.html">Giỏ hàng</a>
             </li>
+
+            <li class="nav-item text-nowrap">
+                <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
+                <a class="nav-link" href="{{route('user.logout')}}">Đăng xuất</a>
+               
+            </li>
+       
+            
             <li class="nav-item text-nowrap">
                 <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
                 <a class="nav-link" href="{{route('user.getLogin')}}">Đăng nhập</a>
             </li>
+            
+      
         </ul>
     </div>
 </nav>

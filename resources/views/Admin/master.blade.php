@@ -23,7 +23,7 @@
 
     @yield('content')
 
-   @include('Admin.components.footer') 
+
 
 
 

@@ -18,44 +18,7 @@
     <link rel="stylesheet" href="{{ asset('resources/css/app.css')}}" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="https://nentang.vn">Nền tảng</a>
-                <div class="navbar-collapse collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Trang chủ <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://nentang.vn">Quản trị</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/products.html">Sản phẩm</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/about.html">Giới thiệu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/contact.html">Liên hệ</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline mt-2 mt-md-0" method="get" action="pages/search.html">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm" aria-label="Search"
-                            name="keyword_tensanpham">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-                    </form>
-                </div>
-                <ul class="navbar-nav px-3">
-                    <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="pages/cart.html">Giỏ hàng</a>
-                    </li>
-                    <li class="nav-item text-nowrap">
-                        <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
-                        <a class="nav-link" href="pages/login.html">Đăng nhập</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+ @include('Customer.components.header')
 <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
         <form name="frmdangnhap" id="frmdangnhap" method="post" action="{{route('user.postLogin')}}">
@@ -68,6 +31,11 @@
                                 <div class="card-body">
                                     <h1>Đăng nhập</h1>
                                     <p class="text-muted">Nhập thông tin Tài khoản</p>
+                                        @if( count($errors)>0)
+                                            @foreach($errors->all() as $er)
+                                                <strong>{{$er}}</strong>
+                                            @endforeach
+                                        @endif    
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -76,6 +44,9 @@
                                         </div>
                                         <input class="form-control" type="text" name="email"
                                             placeholder="Tên đăng nhập">
+                                            @if ($errors->first('email')) 
+                                        <small style="color: red" class="form-text invalid-feedback">{{ $errors->first('email') }}</small>
+                                    @endif
                                     </div>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
@@ -85,6 +56,9 @@
                                         </div>
                                         <input class="form-control" type="password" name="password"
                                             placeholder="Mật khẩu">
+                                            @if ($errors->first('password')) 
+                                        <small style="color: red" class="form-text invalid-feedback">{{ $errors->first('password') }}</small>
+                                    @endif
                                     </div>
                                     <div class="row">
                                         <div class="col-6">

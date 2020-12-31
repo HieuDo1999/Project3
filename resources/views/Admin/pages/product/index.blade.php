@@ -4,27 +4,14 @@
 
   <div class="card mb-4">
     <div class="card-header">
-      <!-- Example single danger button -->
-      <div class="btn-group">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          Danh mục sản phẩm
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="#">Separated link</a></li>
-        </ul>
-      </div>
+     
 
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <form action="{{route('product.viewProductByName')}}" method="post">
+        @csrf
         <div class="input-group">
-          <input class="form-control" type="text" placeholder="Tên sản phẩm " aria-label="Search" aria-describedby="basic-addon2" />
+          <input name="name" class="form-control" type="text" placeholder="Tên sản phẩm " aria-label="Search" aria-describedby="basic-addon2" />
           <div class="input-group-append">
-            <button class="btn btn-primary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
           </div>
         </div>
       </form>
@@ -42,40 +29,23 @@
               <th>Mã sản phẩm</th>
               <th>Tên sản phẩm</th>
               <th>Giá sản phẩm</th>
-              <th>Số lượng</th>
+              <th>Ảnh</th>
               <th>Xóa</th>
               <th>Xem chi tiết</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>Mã sản phẩm</th>
-              <th>Tên sản phẩm</th>
-              <th>Giá sản phẩm</th>
-              <th>Số lượng</th>
-              <th>Xóa</th>
-              <th>Xem chi tiết</th>
-            </tr>
-          </tfoot>
+         
           <tbody>
+            @foreach($product as $pro)
             <tr>
-              <td>112</td>
-              <td>Bánh mì</td>
-              <td>12</td>
-              <td>100</td>
-              <th><i class="bi bi-trash-fill"></i></i></th>
-              <th><i class="fa fa-eye" aria-hidden="true"></i></th>
+              <td>{{$pro->id}}</td>
+              <td>{{$pro->name}}</td>
+              <td>{{$pro->price}}</td>
+              <td><img src="{{ asset('img/'.$pro->image )}}" alt="" style="width: 100px;"></td>
+              <th><a href="{{route('product.delete',$pro->id)}}"><button >Xoa</button></a></th>
+              <th><a href="{{route('product.getProductDetail',$pro->id)}}"><button>Xem chi tiet</button></a></th>
             </tr>
-            <tr>
-              <td>112</td>
-              <td>Bánh mì</td>
-              <td>12</td>
-              <td>100</td>
-              <th><i class="fa fa-trash" aria-hidden="true"></i></th>
-              <th><i class="fa fa-eye" aria-hidden="true"></i></th>
-            </tr>
-
-
+          @endforeach
           </tbody>
         </table>
       </div>

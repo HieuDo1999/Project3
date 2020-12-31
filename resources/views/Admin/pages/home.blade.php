@@ -1,5 +1,5 @@
 @extends('Admin.master')
-@section('title','Trang chủ')
+@section('title','Trang chủ')   
 @section('content') 
 <div class="card mb-4">
                             <div class="card-header">

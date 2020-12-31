@@ -21,7 +21,7 @@
 
 <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
-        <form name="frmdangky" id="frmdangky" method="post" action="{{route('customer.postRegister')}}">
+        <form name="frmdangky" id="frmdangky" method="post" action="{{route('user.postRegister')}}">
             @csrf
             <div class="container mt-4">
                 <div class="row justify-content-center">
@@ -36,8 +36,7 @@
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="text" placeholder="Username"
-                                        name=username>
+                                    <input class="form-control" type="email" placeholder="Email" name="email">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -82,14 +81,7 @@
                                     <input class="form-control" type="text" placeholder="Phone"
                                         name="phone">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-user"></i>
-                                        </span>
-                                    </div>
-                                    <input class="form-control" type="email" placeholder="Email" name="email">
-                                </div>
+                                
                                 
                                 
                                 <button type="submit"  class="btn btn-block btn-success" name="btnDangKy">Tạo tài khoản</button>

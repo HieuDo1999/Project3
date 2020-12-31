@@ -14,11 +14,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        DB::table('customer')->insert([
+        DB::table('users')->insert([
             [
-               'id'=>'1',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('admin123'),
+                'name'=>"Admin",
+                'address'=>"Nam Dinh",
+                'role'=>"2",
+                'phone'=>'21313213213'
+                
             ]
         ]);
     }

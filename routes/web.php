@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,11 @@ Route::group(['prefix'=>'category'],function(){
 });
 
 Route::group(['prefix'=>'product'],function(){
+    Route::get('/getAdd',[ProductController::class,'getAdd'])->name('product.getAdd');
+    Route::post('/postAdd',[ProductController::class,'postAdd'])->name('product.postAdd');
+    Route::get('/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
+    Route::post('/edit',[ProductController::class,'edit'])->name('product.edit');
+    Route::post('/viewProductByName',[ProductController::class,'viewProductByName'])->name('product.viewProductByName');
     Route::get('/getListProduct',[ProductController::class,'index'])->name('product.getListProduct');
     Route::get('/getListProductByCategoryId/{id}',[ProductController::class,'getListProductByCategoryId'])->name('product.getListProductByCategoryId');
     Route::get('/getProductDetail/{id}',[ProductController::class,'getProductDetail'])->name('product.getProductDetail');
@@ -49,6 +56,15 @@ Route::group(['prefix'=>'product'],function(){
 Route::group(['prefix'=>'user'],function(){
     Route::get('/getLogin',[UserController::class,'getLogin'])->name('user.getLogin');
     Route::post('/postLogin',[UserController::class,'postLogin'])->name('user.postLogin');
+    Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
+    Route::get('/getRegister',[UserController::class,'getRegister'])->name('user.getRegister');
+    Route::post('/postRegister',[UserController::class,'postRegister'])->name('user.postRegister');
+    Route::get('/index',[UserController::class,'index'])->name('user.index');
+    Route::post('/viewUserByEmail',[UserController::class,'viewUserByEmail'])->name('user.viewUserByEmail');
+
+});
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('/home',[AdminController::class,'index'])->name('admin.home');
 });
 
 
