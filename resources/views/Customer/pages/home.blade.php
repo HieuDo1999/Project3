@@ -62,6 +62,7 @@
             <!-- card -->
             <div class="row row-cols-1 row-cols-md-3">
             @foreach($product as $pro)
+                <form action="{{route('cart.addToCart')}}" method="post">
                 <div class="col mb-4">
                     <div class="card">
                         <img src="{{ asset('img/'.$pro->image )}}" class="card-img-top" alt="/" style="height: 200px;">
@@ -71,13 +72,14 @@
                             <div class="btn-group" role="group" aria-label="Basic example">
 
                                 <a href="{{route('product.getProductDetail',$pro->id)}}"><button type="button" class="btn btn-secondary">Xem chi tiết</button></a>
-                                <button type="button" class="btn btn-secondary">Thêm vào giỏ</button>
+                                <button type="submit" class="btn btn-secondary">Thêm vào giỏ</button>
 
                             </div>
 
                         </div>
                     </div>
                 </div>
+                </form>
                 @endforeach
                 
         </div>

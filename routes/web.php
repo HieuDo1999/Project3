@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 
 
 /*
@@ -50,6 +51,7 @@ Route::group(['prefix'=>'product'],function(){
     Route::post('/viewProductByName',[ProductController::class,'viewProductByName'])->name('product.viewProductByName');
     Route::get('/getListProduct',[ProductController::class,'index'])->name('product.getListProduct');
     Route::get('/getListProductByCategoryId/{id}',[ProductController::class,'getListProductByCategoryId'])->name('product.getListProductByCategoryId');
+   
     Route::get('/getProductDetail/{id}',[ProductController::class,'getProductDetail'])->name('product.getProductDetail');
 
 });
@@ -65,6 +67,10 @@ Route::group(['prefix'=>'user'],function(){
 });
 Route::group(['prefix'=>'admin'],function(){
     Route::get('/home',[AdminController::class,'index'])->name('admin.home');
+});
+
+Route::group(['prefix'=>'cart'],function(){
+    Route::post('/addToCart',[CartController::class,'addToCart'])->name('cart.addToCart');
 });
 
 

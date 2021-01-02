@@ -100,13 +100,16 @@ class UserController extends Controller
             'password.required'=>'Vui lòng nhập mật khẩu'
         ]
     );
-       
+  
         if (Auth::attempt(['email'=>$email,'password'=>$password])) {
-            $user = DB::table('users')->where('role',"2")->get();
-            if($user){
+            $user = DB::table('users')
+                    ->where('email',$email)
+                    ->where('role',2)->first();
+            if(!empty($user)){
                 $request->session()->put('user','2');
                 return redirect()->route('admin.home');
             }
+     
             $request->session()->put('user','1');
             $request->session()->regenerate();
             $request->session()->flash('toastr',[
@@ -134,7 +137,6 @@ class UserController extends Controller
     public function logout(Request $request){
             $request->session()->forget('user');
             Auth::logout();  
-
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             return redirect()->route('user.getLogin');

@@ -44,6 +44,8 @@ class ProductController extends Controller
             return view('Customer.pages.productDetail', compact('product','category'));
         }
     }
+   
+
     public function getAdd(){
         return view('Admin.pages.product.add');
 
@@ -95,7 +97,13 @@ class ProductController extends Controller
     }
     public function viewProductByName(Request $request){
         $product = DB::table('products')->where('name','like','%'.$request->name.'%')->get();
+        $user=$request->session()->get('user');
+        if($user==2){
         return view('Admin.pages.product.index',compact('product'));
+        }else{
+            return view('Customer.pages.category',compact('product'));
+        }
+
     }
     
 
