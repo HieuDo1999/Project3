@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PlaceOrderController;
 
 
 /*
@@ -71,6 +72,14 @@ Route::group(['prefix'=>'admin'],function(){
 
 Route::group(['prefix'=>'cart'],function(){
     Route::post('/addToCart',[CartController::class,'addToCart'])->name('cart.addToCart');
+    Route::get('/index',[CartController::class,'index'])->name('cart.index');
+    Route::get('/removeProductCart/{id}',[CartController::class,'removeProductCart'])->name('cart.removeProductCart');
+    Route::post('/saveCart',[CartController::class,'SaveCart'])->name('cart.SaveCart');
+});
+Route::group(['prefix'=>'placeOrder'],function(){
+    Route::get('/deliveryForm',[PlaceOrderController::class,'deliveryForm'])->name('placeOrder.deliveryForm');
+    Route::get('/paymentForm',[PlaceOrderController::class,'paymentForm'])->name('placeOrder.paymentForm');
+    Route::post('/payment',[PlaceOrderController::class,'payment'])->name('placeOrder.payment');
 });
 
 

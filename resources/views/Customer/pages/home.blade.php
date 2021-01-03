@@ -63,10 +63,13 @@
             <div class="row row-cols-1 row-cols-md-3">
             @foreach($product as $pro)
                 <form action="{{route('cart.addToCart')}}" method="post">
+                @csrf
                 <div class="col mb-4">
                     <div class="card">
                         <img src="{{ asset('img/'.$pro->image )}}" class="card-img-top" alt="/" style="height: 200px;">
                         <div class="card-body">
+                            <input name="product_id" type="hidden" value="{{$pro->id}}">
+                            <input name="quantity" type="hidden" value="1">
                             <h5 class="card-title">{{$pro->name}}</h5>
                             <h5 class="card-price">{{$pro->price}}</h5>
                             <div class="btn-group" role="group" aria-label="Basic example">

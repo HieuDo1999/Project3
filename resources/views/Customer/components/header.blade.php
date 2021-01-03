@@ -39,7 +39,7 @@
         </div>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="pages/cart.html">Giỏ hàng</a>
+                <a class="nav-link" href="{{route('cart.index')}}">Giỏ hàng</a>
                 @if(session('cart'))
                 <a>{{$cart->totalQty}}</a>
                 @endif

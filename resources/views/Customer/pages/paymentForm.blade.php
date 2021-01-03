@@ -23,31 +23,24 @@
                             <span class="badge badge-secondary badge-pill">2</span>
                         </h4>
                         <ul class="list-group mb-3">
+                        @if(session('cart')!=null)
+                            @foreach($product as $pro)
                             <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
                             <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
                             <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
 
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">Apple Ipad 4 Wifi 16GB</h6>
-                                    <small class="text-muted">11800000.00 x 2</small>
+                                    <h6 class="my-0"><img src="{{ asset('img/'.$pro['product']->image)}}" alt="" style="width: 70px;"></h6>
+                                    <small class="text-muted">{{$pro['product']->price." "."VND"}} x {{$pro['quantity']}}</small>
                                 </div>
-                                <span class="text-muted">23600000</span>
+                                <span class="text-muted">{{$pro['product']->price*$pro['quantity']." "."VND"}}</span>
                             </li>
-                            <input type="hidden" name="sanphamgiohang[2][sp_ma]" value="4">
-                            <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
-                            <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
-
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Apple iPhone 5 16GB White</h6>
-                                    <small class="text-muted">14990000.00 x 8</small>
-                                </div>
-                                <span class="text-muted">119920000</span>
-                            </li>
+                            @endforeach
+                            @endif
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Tổng thành tiền</span>
-                                <strong>143520000</strong>
+                                <strong>{{$newCart->totalPrice." "."VND"}}</strong>
                             </li>
                         </ul>
 
@@ -62,28 +55,28 @@
                             <div class="col-md-12">
                                 <label for="kh_ten">Tên trên thẻ</label>
                                 <input type="text" class="form-control" name="kh_ten" id="kh_ten"
-                                    value="" readonly="">
+                                    value="" >
                             </div>
                             
                             <div class="col-md-12">
                                 <label for="kh_diachi">Số thẻ</label>
                                 <input type="text" class="form-control" name="kh_diachi" id="kh_diachi"
-                                    value="" readonly="">
+                                    value="">
                             </div>
                             <div class="col-md-12">
                                 <label for="kh_dienthoai">Loại thẻ</label>
                                 <input type="text" class="form-control" name="kh_dienthoai" id="kh_dienthoai"
-                                    value="" readonly="">
+                                    value="">
                             </div>
                             <div class="col-md-12">
                                 <label for="kh_dienthoai">Ngày hết hạn</label>
                                 <input type="text" class="form-control" name="kh_dienthoai" id="kh_dienthoai"
-                                    value="" readonly="">
+                                    value="">
                             </div>
                             <div class="col-md-12">
                                 <label for="kh_dienthoai">Mã bảo mật</label>
                                 <input type="text" class="form-control" name="kh_dienthoai" id="kh_dienthoai"
-                                    value="" readonly="">
+                                    value="">
                             </div>
                            
                             

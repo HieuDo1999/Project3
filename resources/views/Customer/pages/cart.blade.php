@@ -13,25 +13,35 @@
         <table class="table">
           <thead>
             <tr>
-              <th></th>
-              <th>Sản phẩm</th>
+              <th>Hình ảnh</th>
+              <th>sản phẩm</th>
               <th>Giá tiền</th>
               <th>Số lượng</th>
+              <th>Tổng tiền</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
+            @if(session('cart')!=null)
+            @foreach($product as $pro)
+            <form action="{{route('cart.SaveCart')}}" method="post">
+            @csrf
             <tr>
-              <td><img src="{{ asset('img/cu1.jpg')}}" alt="" style="width: 70px;"></td>
-              <td scope="row">Bánh quy</td>
-              <td>192VNĐ</td>
-              <td><input aria-label="quantity" class="input-qty" max="100" min="1" name="" type="number" value="1"></td>
+              <td><img src="{{ asset('img/'.$pro['product']->image)}}" alt="" style="width: 70px;"></td>
+              <td scope="row">{{$pro['product']->name}}</td>
+              <td>{{$pro['product']->price}}</td>
+              <input name="id" value="{{$pro['product']->id}}">
+              <td><input aria-label="quantity" class="input-qty" max="100" min="1" name="quantity" type="number" value="{{$pro['quantity']}}"></td>
+              <td>{{$pro['product']->price*$pro['quantity']." "."VND"}}</td>
+              <td><button type="submit">Lưu</button></td>
+              <td><a href="{{route('cart.removeProductCart',$pro['product']->id)}}">Xóa</a></td>
+              
+              
             </tr>
-            <tr>
-              <td><img src="{{ asset('img/cu1.jpg')}}" alt="" style="width: 70px;"></td>
-              <td scope="row">Sữa tươi</td>
-              <td>11000VND</td>
-              <td><input aria-label="quantity" class="input-qty" max="100" min="1" name="" type="number" value="1"></td>
-            </tr>
+            </form>
+            @endforeach
+            @endif
+            
           </tbody>
         </table>
 
@@ -40,20 +50,23 @@
         <table class="table">
           <tbody>
             <tr>
-              <td scope="row">Tạm tính</td>
+              <td scope="row">Số lượng</td>
               <td>Thành tiền</td>
 
             </tr>
             <tr>
-              <td scope="row">1111VDN</td>
-              <td>222VND</td>
+            @if(session('cart')!=null)
+              <td scope="row">{{$newCart->totalQuantity}}</td>
+              <td>{{$newCart->totalPrice." "."VND"}}</td>
+              @endif
 
             </tr>
           </tbody>
         </table>
-        <button type="button" class="btn btn-danger" style="background-color: green;">Đặt hàng</button>
+        <a href="{{route('placeOrder.deliveryForm')}}"><button type="button" class="btn btn-danger" style="background-color: green;">Đặt hàng</button></a>
 
       </dv>
+ 
     </div>
 
 
