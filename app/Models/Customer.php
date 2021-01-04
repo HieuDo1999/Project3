@@ -8,9 +8,9 @@ use Illuminate\Notifications\Notifiable;
 class Customer extends Model
 {
     use HasFactory,Notifiable;
-    protected $table='customers';
+    protected $table='customer';
     public function bill(){
-        return $this->hasMany('App\Bill','customer_id','id');
+        return $this->hasMany('App\Bill','customer_id','customer_id');
     }
 
 

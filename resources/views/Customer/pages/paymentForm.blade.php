@@ -7,7 +7,9 @@
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
         <div class="container ">
             <form class="needs-validation" name="frmthanhtoan" method="post"
-                action="#">
+                action="{{route('placeOrder.payment')}}">
+
+                @csrf
                 <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
                 <div class="py-5 text-center">
@@ -45,7 +47,13 @@
                         </ul>
 
 
-                        
+                       <input type="hidden" name="name" value="{{$dataCustomer['name']}}">
+                       <input type="hidden" name="address" value="{{$dataCustomer['address']}}">
+                       <input type="hidden" name="phone" value="{{$dataCustomer['phone']}}">
+                       <input type="hidden" name="email" value="{{$dataCustomer['email']}}">
+                       <input type="hidden" name="note" value="{{$dataCustomer['note']}}">
+
+                      
 
                     </div>
                     <div class="col-md-8 order-md-1">

@@ -7,7 +7,7 @@
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
         <div class="container ">
             <form class="needs-validation" name="frmthanhtoan" method="post"
-                action="{{route('placeOrder.payment')}}">
+                action="{{route('placeOrder.PlaceOrder')}}">
                 @csrf
                 <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
@@ -67,6 +67,16 @@
                             <div class="col-md-12">
                                 <label for="kh_dienthoai">Điện thoại</label>
                                 <input type="text" class="form-control" name="phone" id="kh_dienthoai"
+                                    value="" >
+                            </div>
+                            <div class="col-md-12">
+                                <label for="kh_dienthoai">Email</label>
+                                <input type="text" class="form-control" name="email" id="kh_dienthoai"
+                                    value="" >
+                            </div>
+                            <div class="col-md-12">
+                                <label for="kh_dienthoai">Ghi chú</label>
+                                <input type="text" class="form-control" name="note" id="kh_dienthoai"
                                     value="" >
                             </div>
                            

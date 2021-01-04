@@ -21,16 +21,18 @@
  @include('Customer.components.header')
 <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
-        <form name="frmdangnhap" id="frmdangnhap" method="post" action="{{route('user.postLogin')}}">
+    
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             <div class="container mt-4">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card-group">
+                            <form action="{{route('user.postChangePassWord')}}" method="post">
+                            @csrf
                             <div class="card p-4">
                                 <div class="card-body">
-                                    <h1>Đăng nhập</h1>
-                                    <p class="text-muted">Nhập thông tin Tài khoản</p>
+                                    <h1>Đổi mật khẩu</h1>
+                                   
                                         @if( count($errors)>0)
                                             @foreach($errors->all() as $er)
                                                 <strong>{{$er}}</strong>
@@ -42,8 +44,8 @@
                                                 <i class="icon-user"></i>
                                             </span>
                                         </div>
-                                        <input class="form-control" type="text" name="email"
-                                            placeholder="Tên đăng nhập">
+                                        <input class="form-control" type="password" name="oldPass"
+                                            placeholder="Mật khẩu cũ">
                                             @if ($errors->first('email')) 
                                         <small style="color: red" class="form-text invalid-feedback">{{ $errors->first('email') }}</small>
                                     @endif
@@ -54,29 +56,28 @@
                                                 <i class="icon-lock"></i>
                                             </span>
                                         </div>
-                                        <input class="form-control" type="password" name="password"
-                                            placeholder="Mật khẩu">
+                                        <input class="form-control" type="password" name="newPass"
+                                            placeholder="Mật khẩu mới">
                                             @if ($errors->first('password')) 
                                         <small style="color: red" class="form-text invalid-feedback">{{ $errors->first('password') }}</small>
-                                    @endif
+                                             @endif
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <button class="btn btn-primary px-4" name="btnDangNhap" type="submit">Đăng nhập</button>
+                                    <div class="row mb-6">
+                                        <div class="col">
+                                            <button class="btn btn-primary px-4" name="btnDangNhap" type="submit">Đổi mật khẩu</button>
                                         </div>
-                                        <div class="col-6">
-                                        <a href="{{route('user.getRegister')}}">  Đăng kí </a>
-                                    
-                                        </div>               
+                                        
+                                        
                                     </div>
                                 </div>
                             </div>
+                            </form>
                             
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+      
         <!-- End block content -->
     </main>
     <!-- Liên kết Jquery -->

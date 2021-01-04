@@ -85,7 +85,7 @@
                 </form>
                 @endforeach
                 
-        </div>
+            </div>
 
     </div>
     <!-- /.col-lg-9 -->

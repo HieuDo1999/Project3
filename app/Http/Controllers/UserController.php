@@ -159,7 +159,55 @@ class UserController extends Controller
         $user = DB::table('users')->where('email','like','%'.$request->email.'%')->get();
         return view('Admin.pages.customer.index',compact('user'));
     }
+
+    public function viewAccount(){
+        $user=User::find(Auth::id());
+        return view('Customer.pages.account',compact('user'));
+    }
+    public function updateAccount(Request $request ){
+       DB::table('users')->where('id',Auth::id())
+                        ->update(
+                            ['name'=>$request->name]
+                        );
+                            DB::table('users')->where('id',Auth::id())
+                            ->update(
+                                ['email'=>$request->email]
+                            );
+                            DB::table('users')->where('id',Auth::id())
+                            ->update(
+                                ['address'=>$request->address]
+                            );
+                            DB::table('users')->where('id',Auth::id())
+                            ->update(
+                                ['phone'=>$request->phone]
+                            );
+                      
+        return redirect()->route('user.viewAccount');
+    }
+    public function changePass(){
+        return view('Customer.pages.changePass');
+    }
+        public function postChangePassWord(Request $request ){
+           
+            $user=DB::table('users')->where('id',Auth::id())->get();
+        
+            foreach($user as $user):
+            $email=$user->email;
+                endforeach;
+           
+            $oldpass=$request->oldPass;
+         
+            if (Auth::attempt(['email'=>$email,'password'=>$oldpass])) {
+                
+             DB::table('users')->where('id',Auth::id())
+            ->update(
+                ['password'=>bcrypt($request->newPass)]
+            );
+            return redirect()->route('user.getLogin');
+        }
+    }
+}
    
 
-}
+
 

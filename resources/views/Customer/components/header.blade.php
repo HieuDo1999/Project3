@@ -8,9 +8,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{route('home.index')}}">Trang chủ <span class="sr-only">(current)</span></a>
                 </li>
+
+                @if(session('user'))
                 <li class="nav-item">
-                    <a class="nav-link" href="https://nentang.vn">Quản trị</a>
+                    <a class="nav-link" href="{{route('user.viewAccount')}}">Tài khoản</a>
                 </li>
+                @endif
+
+
                 <li class="nav-item">
                     <!-- Example single danger button -->
                     <div class="btn-group">
@@ -24,12 +29,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/about.html">Giới thiệu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/contact.html">Liên hệ</a>
-                </li>
+                
             </ul>
             <form class="form-inline mt-2 mt-md-0" method="post" action="{{route('product.viewProductByName')}}">
                 @csrf
@@ -48,8 +48,10 @@
             <li class="nav-item text-nowrap">
                 <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
                 <a class="nav-link" href="{{route('user.logout')}}">Đăng xuất</a>
+               
 
             </li>
+            
             @else
 
             <li class="nav-item text-nowrap">

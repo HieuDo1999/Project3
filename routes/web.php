@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PlaceOrderController;
+use App\Http\Controllers\BillController;
 
 
 /*
@@ -64,7 +65,10 @@ Route::group(['prefix'=>'user'],function(){
     Route::post('/postRegister',[UserController::class,'postRegister'])->name('user.postRegister');
     Route::get('/index',[UserController::class,'index'])->name('user.index');
     Route::post('/viewUserByEmail',[UserController::class,'viewUserByEmail'])->name('user.viewUserByEmail');
-
+    Route::post('/update',[UserController::class,'updateAccount'])->name('user.update');
+    Route::get('/viewAccount',[UserController::class,'viewAccount'])->name('user.viewAccount');
+    Route::post('/postChangePassWord',[UserController::class,'postChangePassWord'])->name('user.postChangePassWord');
+    Route::get('/changePass',[UserController::class,'changePass'])->name('user.changePass');
 });
 Route::group(['prefix'=>'admin'],function(){
     Route::get('/home',[AdminController::class,'index'])->name('admin.home');
@@ -80,6 +84,11 @@ Route::group(['prefix'=>'placeOrder'],function(){
     Route::get('/deliveryForm',[PlaceOrderController::class,'deliveryForm'])->name('placeOrder.deliveryForm');
     Route::get('/paymentForm',[PlaceOrderController::class,'paymentForm'])->name('placeOrder.paymentForm');
     Route::post('/payment',[PlaceOrderController::class,'payment'])->name('placeOrder.payment');
+    Route::post('/PlaceOrder',[PlaceOrderController::class,'placeOrder'])->name('placeOrder.PlaceOrder');
+});
+Route::group(['prefix'=>'bill'],function(){
+    Route::get('/detail/{id}',[BillController::class,'detail'])->name('bill.detail');
+
 });
 
 
