@@ -107,6 +107,7 @@ class UserController extends Controller
                     ->where('role',2)->first();
             if(!empty($user)){
                 $request->session()->put('user','2');
+                
                 return redirect()->route('admin.home');
             }
      
@@ -144,6 +145,11 @@ class UserController extends Controller
         
     }
     public function postRegister(Request $request){
+        $users=DB::table('users')->where('email',$request->email)->get();
+        if($users){
+            return redirect()->route('user.getRegister');
+        }
+
         $user= new User();
         $user->password=bcrypt($request->password);
         $user->name=$request->name;
@@ -190,7 +196,7 @@ class UserController extends Controller
         public function postChangePassWord(Request $request ){
            
             $user=DB::table('users')->where('id',Auth::id())->get();
-        
+            
             foreach($user as $user):
             $email=$user->email;
                 endforeach;
@@ -204,8 +210,11 @@ class UserController extends Controller
                 ['password'=>bcrypt($request->newPass)]
             );
             return redirect()->route('user.getLogin');
-        }
-    }
+            }
+            $mess="1";
+            return redirect()->route('user.changePass',compact('mess'));
+     }
+    
 }
    
 

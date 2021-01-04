@@ -2,19 +2,19 @@
 @section('title','Trang chủ')
 @section('content')
 <div class="card mb-4">
-  <div class="card-header">
-  <form action="{{route('product.viewProductByName')}}" method="post">
+  <div class="card-header mb-2">
+      <form form action="{{route('product.viewProductByName')}}" method="post">
         @csrf
-        <div class="input-group">
-          <input name="name" class="form-control" type="text" placeholder="Tên sản phẩm " aria-label="Search" aria-describedby="basic-addon2" />
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </div>
+        <div>
+        <input class="form-control mr-sm-2" type="text" placeholder="Tên sản phẩm" aria-label="Search" name="name">
         </div>
-      </form>
+        <div>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </div>
+          </form>
 
 
-    <a> <i class="fa fa-plus fa-2x" aria-hidden="true" style="color:green;">Thêm sản phẩm </i></a>
+ 
   </div>
   <form action="{{ route('product.postAdd')}}" method="post" enctype="multipart/form-data">
         @csrf
@@ -52,7 +52,7 @@
         
       </table>
       <div>
-        <button type="submit" style="background-color: green;color: yellow;">Thêm </button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Thêm</button>
       </div>
     </div>
     </form>

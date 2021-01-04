@@ -18,8 +18,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $product = Product::orderBy('id', 'DESC')->get();
-        $user=$request->session()->get('user');
-        if($user=="2"){
+        $user=session('user');
+        if($user==2){
             return view('Admin.pages.product.index', compact('product'));
         }else{
            

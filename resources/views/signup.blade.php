@@ -20,8 +20,50 @@
 <body>
 
 <main role="main">
+<script language="javascript">
+                        function validateRegister(){
+                            if( document.frmdangky.email.value =="") {
+                                alert( "Bạn cần nhập email" );
+                                document.frmdangky.email.focus() ;
+                                return false;
+                            }
+                            if( document.frmdangky.password.value == "" ) {
+                                alert( "Bạn cần nhập mật khẩu " );
+                                document.frmdangky.password.focus() ;
+                                return false;
+                            }
+                            if( document.frmdangky.repassword.value == "" ) {
+                                alert( "Bạn cần nhập mật khẩu xác thực" );
+                                document.frmdangky.repassword.focus() ;
+                                return false;
+                            }
+                            if( document.frmdangky.repassword.value != document.frmdangky.password.value ) {
+                                alert( "Mật khẩu không trùng" );
+                                document.frmdangky.repassword.focus() ;
+                                return false;
+                            }
+                            if( document.frmdangky.name.value =="" ) {
+                                alert( "Bạn cần nhập tên" );
+                                document.frmdangky.name.focus() ;
+                                return false;
+                            }
+                            if( document.frmdangky.address.value ==  "") {
+                                alert( "Bạn cần nhập địa chỉ" );
+                                document.frmdangky.newPass.focus() ;
+                                return false;
+                            }
+                            if( document.frmdangky.phone.value ==  "") {
+                                alert( "Bạn cần nhập số điện thoại" );
+                                document.frmdangky.phone.focus() ;
+                                return false;
+                            }
+                            
+                            return( true );
+
+                        }
+                    </script>
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
-        <form name="frmdangky" id="frmdangky" method="post" action="{{route('user.postRegister')}}">
+        <form name="frmdangky" id="frmdangky" method="post" action="{{route('user.postRegister')}}" onsubmit = "return validateRegister();">
             @csrf
             <div class="container mt-4">
                 <div class="row justify-content-center">
@@ -29,6 +71,7 @@
                         <div class="card mx-4">
                             <div class="card-body p-4">
                                 <h1>Đăng ký</h1>
+                                
                                 <p class="text-muted">Tạo tài khoản</p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -53,7 +96,7 @@
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="text" placeholder="Repassword" name="repassword">
+                                    <input class="form-control" type="password" placeholder="Repassword" name="repassword">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -91,7 +134,7 @@
                                     <div class="col-12">
                                         <center>Nếu bạn đã có Tài khoản, xin mời Đăng nhập</center>
                                         <a class="btn btn-primary form-control"
-                                            href="login.html">Đăng nhập</a>
+                                            href="{{route('user.getLogin')}}">Đăng nhập</a>
                                     </div>
                                 </div>
                             </div>

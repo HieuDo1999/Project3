@@ -8,16 +8,12 @@
 
       <form action="{{route('product.viewProductByName')}}" method="post">
         @csrf
-        <div class="input-group">
-          <input name="name" class="form-control" type="text" placeholder="Tên sản phẩm " aria-label="Search" aria-describedby="basic-addon2" />
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </div>
-        </div>
+        <input class="form-control mr-sm-2" type="text" placeholder="Tên sản phẩm" aria-label="Search" name="name">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
       </form>
 
 
-      <a> <i class="fa fa-plus fa-2x" aria-hidden="true" style="color:green;">Thêm sản phẩm </i></a>
+     
     </div>
 
 
@@ -42,7 +38,7 @@
               <td>{{$pro->name}}</td>
               <td>{{$pro->price}}</td>
               <td><img src="{{ asset('img/'.$pro->image )}}" alt="" style="width: 100px;"></td>
-              <th><a href="{{route('product.delete',$pro->id)}}"><button >Xoa</button></a></th>
+              <th><a href="{{route('product.delete',$pro->id)}}" onclick="return confirm('Are you sure?');"><button >Xoa</button></a></th>
               <th><a href="{{route('product.getProductDetail',$pro->id)}}"><button>Xem chi tiet</button></a></th>
             </tr>
           @endforeach

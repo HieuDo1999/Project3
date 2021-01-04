@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('Admin.pages.home',function($view){
             $bills= DB::table('bills')->join('customer', 'bills.customer_id', '=', 'customer.customer_id')->get();
-            
+   
             $view->with('bills',$bills);
         });
         

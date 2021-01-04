@@ -6,16 +6,12 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fa fa-list" aria-hidden="true"></i>
-        Danh sách khách hàng
+    
         
         <form action="{{route('user.viewUserByEmail')}}" method="post">
             @csrf
-            <div class="input-group">              
-                <input class="form-control" type="text" name="email" placeholder="Email" aria-label="Search" aria-describedby="basic-addon2" />          
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </div>
-            </div>
+            <input class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="Search" name="email">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
         </form>
     </div>
     <div></div>

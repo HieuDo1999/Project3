@@ -27,17 +27,36 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card-group">
-                            <form action="{{route('user.postChangePassWord')}}" method="post">
+                        <script language="javascript">
+                        function validateChange(){
+                            if( document.Change.oldPass.value == "" ) {
+                                alert( "Bạn cần nhập mật khẩu cũ" );
+                                document.Change.oldPass.focus() ;
+                                return false;
+                            }
+                            if( document.Change.newPass.value == "" ) {
+                                alert( "Bạn cần nhập mật khẩu mới" );
+                                document.Change.newPass.focus() ;
+                                return false;
+                            }
+                            if( document.Change.newPass.value !=  document.Change.newPassAgain.value) {
+                                alert( "Mật khẩu không trùng" );
+                                document.Change.newPass.focus() ;
+                                return false;
+                            }
+                            
+                            return( true );
+
+                        }
+                    </script>
+                  
+                            <form action="{{route('user.postChangePassWord')}}" method="post" name="Change" onsubmit = "return validateChange();">
                             @csrf
                             <div class="card p-4">
                                 <div class="card-body">
                                     <h1>Đổi mật khẩu</h1>
-                                   
-                                        @if( count($errors)>0)
-                                            @foreach($errors->all() as $er)
-                                                <strong>{{$er}}</strong>
-                                            @endforeach
-                                        @endif    
+
+                                          
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -46,9 +65,9 @@
                                         </div>
                                         <input class="form-control" type="password" name="oldPass"
                                             placeholder="Mật khẩu cũ">
-                                            @if ($errors->first('email')) 
+                                           
                                         <small style="color: red" class="form-text invalid-feedback">{{ $errors->first('email') }}</small>
-                                    @endif
+                                   
                                     </div>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
@@ -57,7 +76,20 @@
                                             </span>
                                         </div>
                                         <input class="form-control" type="password" name="newPass"
-                                            placeholder="Mật khẩu mới">
+                                            placeholder=" Mật khẩu mới">
+                                            @if ($errors->first('password')) 
+                                        <small style="color: red" class="form-text invalid-feedback">{{ $errors->first('password') }}</small>
+                                             @endif
+                                    </div>
+                                    
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="icon-lock"></i>
+                                            </span>
+                                        </div>
+                                        <input class="form-control" type="password" name="newPassAgain"
+                                            placeholder="Nhập lại mật khẩu mới">
                                             @if ($errors->first('password')) 
                                         <small style="color: red" class="form-text invalid-feedback">{{ $errors->first('password') }}</small>
                                              @endif

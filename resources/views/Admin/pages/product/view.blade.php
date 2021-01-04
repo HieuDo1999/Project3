@@ -7,16 +7,12 @@
     <div class="card-header">
     <form action="{{route('product.viewProductByName')}}" method="post">
         @csrf
-        <div class="input-group">
-          <input name="name" class="form-control" type="text" placeholder="Tên sản phẩm " aria-label="Search" aria-describedby="basic-addon2" />
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </div>
-        </div>
+        <input class="form-control mr-sm-2" type="text" placeholder="Tên sản phẩm" aria-label="Search" name="name">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
       </form>
 
 
-        <a> <i class="fa fa-plus fa-2x" aria-hidden="true" style="color:green;">Thêm sản phẩm </i></a>
+      
     </div>
     <div class="card-body">
         @foreach($product as $pro)
@@ -33,6 +29,7 @@
                             <th class="category">Loại sản phẩm</th>
                             <th class="price">Giá sản phẩm</th>
                             <th class="category">Mô tả</th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -49,11 +46,12 @@
                                 </select></td>
                             <td><input type="text" value="{{$pro->price}}" name="price"></td>
                             <td><input type="text" value="{{$pro->description}}" name="description"></td>
+                            <td> <button type="submit" style="background-color: green;color: yellow;">Cập nhật</button></td>
                         </tr>
                     </tbody>
                 </table>
                 <div>
-                    <button type="submit" style="background-color: green;color: yellow;">Cập nhật</button>
+                   
                 </div>
             </div>
         </form>

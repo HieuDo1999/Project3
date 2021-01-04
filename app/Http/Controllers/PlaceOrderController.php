@@ -35,15 +35,17 @@ class PlaceOrderController extends Controller
         $name=$request->name;
         $phone= $request->phone;
         $address=$request->address;
+     
         $customer= new Customer();
-        $customer->id=Auth::id();
+        $customer->customer_id=Auth::id();
         $customer->name=$name;
         $customer->address=$address;
         $customer->phone=$phone;
         $customer->email=$request->email;
+     
 
         $dataCustomer=[
-            'id'=>$customer->id,
+            'id'=>$customer->customer_id,
             'name'=>$name,
             'address'=>$address,
             'phone'=>$phone,
@@ -55,15 +57,25 @@ class PlaceOrderController extends Controller
         $product = $newCart->products;
    
         $method=$request->method;
-        if($method==1){// tien mat
-            $customer=Customer::find(Auth::id());
-           if($customer->id){
+        if($method==1){
+            $customers=DB::table('customer')->where('customer_id',Auth::id())->get();
+           foreach($customers as $cus)
+        
+           if($cus){
             DB::table('customer')
-            ->where('id',Auth::id())
+            ->where('customer_id',Auth::id())
             ->update(
                 ['name' => $name, 'email' => $request->email,'address'=>$address,'phone'=>$phone]
             );
-        }else $customer->save();
+             }else{
+                DB::table('customer')->insert([
+                    'id' => $customer->customer_id,
+                    'name' => $customer->name,
+                    'email'=>$customer->email,
+                    'address'=>$customer->address,
+                    'phone'=>$customer->phone
+                ]);
+             }
 
            $bill= new Bill();
            $bill->customer_id=Auth::id();
@@ -95,22 +107,25 @@ class PlaceOrderController extends Controller
     }
     public function payment(Request $request){
       
-        
-        $name=$request->name;
-      $email=$request->email;
-       $address=$request->address;
+        $customer= new Customer();
+        $customer->name=$request->name;
+        $customer->email=$request->email;
+        $customer->address=$request->address;
+        $customer->customer_id=Auth::id();
         $note=$request->note;
-      $phone=$request->phone;
+        $customer->phone=$request->phone;
         $oldCart = session('cart');
         $newCart = new Cart($oldCart);
         $product = $newCart->products;
 
-            $customer=Customer::find(Auth::id());
-           if($customer->id){
+        $customers=DB::table('customer')->where('customer_id',Auth::id())->get();
+           foreach($customers as $cus)
+        
+           if($cus){
             DB::table('customer')
-            ->where('id',Auth::id())
+            ->where('customer_id',Auth::id())
             ->update(
-                ['name' => $name, 'email' => $email,'address'=>$address,'phone'=>$phone]
+                ['name' => $customer->name, 'email' => $request->email,'address'=>$customer->address,'phone'=>$customer->phone]
             );
         }else $customer->save();
 
@@ -138,5 +153,4 @@ class PlaceOrderController extends Controller
            return redirect()->route('home.index');
 
     }
-
 }

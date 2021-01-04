@@ -5,16 +5,20 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="{{route('admin.home')}}">Đơn hàng<span class="sr-only">(current)</span></a>
+           
+           
           </li>
-          
+          <li class="nav-item active">
+          <a class="nav-link" href="{{route('user.index')}}">Danh sách người dùng<span class="sr-only">(current)</span></a>
+          </li>
           <li class="nav-item">
            <!-- Example single danger button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button style type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Quản lý sản phẩm
   </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="{{route('product.getListProduct')}}">Danh sách sản phẩm</a>
+  <div class="dropdown-menu" >
+    <a  class="dropdown-item" href="{{route('product.getListProduct')}}">Danh sách sản phẩm</a>
     <a class="dropdown-item" href="{{route('product.getAdd')}}">Thêm sản phẩm</a>
 
   </div>
@@ -23,13 +27,10 @@
           <li class="nav-item">
             <!-- Example single danger button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Quản lý người dùng
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="{{route('user.index')}}">Danh sách người dùng</a>
+ 
    
-  </div>
+   
+  
 </div>
           </li>
           
